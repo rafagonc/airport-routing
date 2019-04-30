@@ -41,7 +41,7 @@ Decisões tomadas no projeto:
   - GET - Find Best Route
     - Params - ?source=GRU&destination=CDG
     - Response 200 - {"route":["GRU","BRC","SCL","ORL","CDG"],"cost":40}
-    - Response 400 - {"error": "Cannot find best route"}}
+    - Response 400 - {"error": "There is no possible route between these airports"}}
 
 # Rota de Viagem #
 
