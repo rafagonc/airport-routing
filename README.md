@@ -6,16 +6,40 @@ Para instalar as dependências:
 
 - `pip install -r requirements.txt`
 
+# Testes #
+
+Localizados em triṕ/routes/tests.py
+
+Para rodar os testes na sua máquina:
+
+- `py.test trip`
+
+Para rodar testes com docker:
+
+- `docker run -ti rafagonc/airport-routing py.test`
+
 # Como Executar #
 
 Na pasta root do projeto
 
-- CLI
-  - `python manage.py cli input-file.csv`
+- Sem Docker
+    - CLI
+        - `python manage.py cli input-file.csv`
 
-- REST
-  - `python manage.py rest input-file.csv`
-  - Documentação disponível em `127.0.0.1:8000/docs/`
+    - REST
+        - `python manage.py rest input-file.csv`
+        - Documentação disponível em `0.0.0.0:8000/docs/`
+
+- Com Docker
+    - CLI
+        - `docker run -ti rafagonc/airport-routing python manage.py cli input-file.csv`
+        - **Trocando input** `docker run -v {path_para_seu_input_file}:/app/input-file.csv -it rafagonc/airport-routing python manage.py cli input-file.csv`
+
+    - REST
+        - `docker run -ti -p 8000:8000 rafagonc/airport-routing python manage.py rest input-file.csv`
+        - Documentação disponível em `0.0.0.0:8000/docs/`
+        - **Trocando input** `docker run -v {path_para_seu_input_file}:/app/input-file.csv -it rafagonc/airport-routing python manage.py rest input-file.csv`
+
   
 
 **Estrutura de arquivos e pacotes.**
@@ -28,6 +52,7 @@ Decisões tomadas no projeto:
 
 - Utilização do algoritmo de dijkstra pronto para não reinventar a roda.
 - Arquitetura REST utilizando todos os status_codes e métodos (GET, POST, PUT, PATCH, DELETE)
+- Uso do Docker para facilitar o teste em qualquer máquina e facilitar a utilização do mesmo em orquestradores como Kubernetes.
 
 **Descreva sua APÌ Rest de forma simplificada.**
 
@@ -42,6 +67,8 @@ Decisões tomadas no projeto:
     - Params - ?source=GRU&destination=CDG
     - Response 200 - {"route":["GRU","BRC","SCL","ORL","CDG"],"cost":40}
     - Response 400 - {"error": "There is no possible route between these airports"}}
+
+----------------------------------------------------------------------------------------
 
 # Rota de Viagem #
 

@@ -8,7 +8,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         filename = options['filename']
         os.environ["CSV_FILENAME"] = filename
-        call_command('runserver',  '127.0.0.1:8000')
+        call_command('runserver',  '0.0.0.0:8000')
 
     def add_arguments(self, parser):
         parser.add_argument('filename', type=str)
