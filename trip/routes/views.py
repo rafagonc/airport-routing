@@ -12,7 +12,10 @@ class RouteAPIView(APIView):
         destination = get_request_field(request.query_params,
                                         "destination",
                                         optional=False)
-        cost, route = find_best_route(source, destination)
+        try:
+            cost, route = find_best_route(source, destination)
+        except RouteException as e:
+            return Response({"error": str(e)}, status=400)
         return Response({"route": route, "cost": cost}, status=200)
 
     def post(self, request):

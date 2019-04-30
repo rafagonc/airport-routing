@@ -1,0 +1,48 @@
+# Group Routes
+
+## Create [POST /routes/]
+
++ Request (application/json)
+
+{
+    "source": "GRU",
+    "destination": "SCL",
+    "cost": 3
+}
+
++ Response (application/json)
+
+{
+    "message":"New route successfully registered"
+}
+
++ Response 400 (application/json)
+
+{
+    "error": "Invalid cost for route"
+}
+
++ Response 400 (application/json)
+
+{
+    "error": "Airports should have only 3 letters!"
+}
+
++ Response 400 (application/json)
+
+{
+    "error": "There is already a cost for this route"
+}
+
+## Best Route [GET /routes/?source={source}&destination={destination}]
+
++ Parameters
+    - source (string) - Source Airport (GRU, SCL, ...)
+    - destination (string) - Destination Airport (GRU, SCL, ...)
+
++ Response (application/json)
+
+{
+    "route":["GRU","BRC","SCL","ORL","CDG"],
+    "cost":40
+}

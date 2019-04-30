@@ -49,7 +49,7 @@ ROOT_URLCONF = 'trip.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['trip/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

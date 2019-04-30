@@ -1,3 +1,48 @@
+# Dependências #
+
+Projeto testado com **Python 3.6.4**
+
+Para instalar as dependências:
+
+- `pip install -r requirements.txt`
+
+# Como Executar #
+
+Na pasta root do projeto
+
+- CLI
+  - `python manage.py cli input-file.csv`
+
+- REST
+  - `python manage.py rest input-file.csv`
+  - Documentação disponível em `127.0.0.1:8000/docs/`
+  
+
+**Estrutura de arquivos e pacotes.**
+
+A estrutura segue a arquitetura do Django de apps separados em módulos. A intenção é deixar o mais simples e intuitivo possível para que o próximo desenvolvedor não tenha dificuldade em se localizar e fazer manutenção.
+
+**Explique as decisões de design adotadas para a solução.**
+
+Decisões tomadas no projeto:
+
+- Utilização do algoritmo de dijkstra pronto para não reinventar a roda.
+- Arquitetura REST utilizando todos os status_codes e métodos (GET, POST, PUT, PATCH, DELETE)
+
+**Descreva sua APÌ Rest de forma simplificada.**
+
+- Path: /routes/
+  - POST - Criar nova rota
+    - Params - {"source": "GRU", "destination": "CDG", "cost": 3}
+    - Response 200 - {"message": "New route successfully registered"}
+    - Response 400 - {"error": "Airports should have only 3 letters!"}
+    - Response 400 - {"error": "Invalid cost for route"}
+    - Response 400 - {"error": "There is already a cost for this route"}
+  - GET - Find Best Route
+    - Params - ?source=GRU&destination=CDG
+    - Response 200 - {"route":["GRU","BRC","SCL","ORL","CDG"],"cost":40}
+    - Response 400 - {"error": "Cannot find best route"}}
+
 # Rota de Viagem #
 
 Um turista deseja viajar pelo mundo pagando o menor preço possível independentemente do número de conexões necessárias.

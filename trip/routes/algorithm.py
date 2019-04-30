@@ -21,4 +21,4 @@ def dijkstra(edges, f, t):
                 if prev is None or next < prev:
                     mins[v2] = next
                     heappush(q, (next, v2, path))
-    return float("inf")
+    

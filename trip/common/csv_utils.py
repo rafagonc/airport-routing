@@ -3,10 +3,6 @@ from trip.common.exceptions import MissingFileException, ValdationError
 
 
 def write_line_to_csv(filename, content):
-    source, destination = content[0], content[1]
-    for i, datapoint in enumerate(read_csv_content(filename)):
-        if datapoint[0] == source and datapoint[1] == destination:
-            raise ValdationError("Ja existe um custo para esta rota")
     try:
         with open(filename, "a") as csvfile:
             csvfile.write("\n" + ",".join(content))
